@@ -5,3 +5,4 @@ marshmallow
 marshmallow-sqlalchemy
 python-dotenv
 
+pip freeze > requirements.txt
