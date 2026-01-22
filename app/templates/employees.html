@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Employee List</h2>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for emp in employees %}
+    <tr>
+        <td>{{ emp.id }}</td>
+        <td>{{ emp.first_name }} {{ emp.last_name }}</td>
+        <td>{{ emp.email }}</td>
+        <td>{{ emp.role }}</td>
+        <td>
+            <a href="{{ url_for('frontend.edit_employee', id=emp.id) }}">
+                <button>Edit</button>
+            </a>
+            <button onclick="deleteEmployee({{ emp.id }})">Delete</button>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<hr>
+
+<h3>Check Visa Status</h3>
+
+<label>Employee ID</label>
+<input type="number" id="empId" placeholder="Enter Employee ID">
+
+<button onclick="checkVisaById()">Check Visa Status</button>
+
+<p id="visaResult" style="font-weight: bold;"></p>
+
+<script>
+function deleteEmployee(id) {
+    if (!confirm("Are you sure?")) return;
+
+    fetch(`/api/employees/${id}`, {
+        method: "DELETE"
+    }).then(() => {
+        location.reload();
+    });
+}
+
+function checkVisaById() {
+    const empId = document.getElementById("empId").value;
+    const result = document.getElementById("visaResult");
+
+    if (!empId) {
+        result.innerText = "Please enter Employee ID";
+        result.style.color = "red";
+        return;
+    }
+
+    fetch(`/api/checks/visa/${empId}`)
+        .then(res => res.json())
+        .then(data => {
+            if (data.error) {
+                result.innerText = data.error;
+                result.style.color = "red";
+            } else {
+                result.innerText = `Visa Status: ${data.visa_status} (Expiry: ${data.visa_expiry})`;
+                result.style.color = data.visa_status === "Visa Valid" ? "green" : "red";
+            }
+        });
+}
+</script>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Edit Employee</h2>
+
+<form method="post">
+    <label>First Name</label>
+    <input type="text" name="first_name" value="{{ employee.first_name }}" required>
+
+    <label>Last Name</label>
+    <input type="text" name="last_name" value="{{ employee.last_name }}" required>
+
+    <label>Email</label>
+    <input type="email" name="email" value="{{ employee.email }}" required>
+
+    <label>Role</label>
+    <input type="text" name="role" value="{{ employee.role }}">
+
+    <label>Visa Status</label>
+    <select name="visa_status" required>
+        <option value="Valid" {% if employee.visa_status == "Valid" %}selected{% endif %}>Valid</option>
+        <option value="Expired" {% if employee.visa_status == "Expired" %}selected{% endif %}>Expired</option>
+    </select>
+
+    <label>Visa Expiry Date</label>
+    <input type="date"
+           name="visa_expiry"
+           value="{{ employee.visa_expiry.strftime('%Y-%m-%d') if employee.visa_expiry }}">
+
+    <button type="submit">Update Employee</button>
+</form>
+{% endblock %}
