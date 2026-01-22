@@ -6,5 +6,4 @@ marshmallow-sqlalchemy
 python-dotenv
 pymysql
 gunicorn
-
-pip freeze > requirements.txt
+vercel-python
