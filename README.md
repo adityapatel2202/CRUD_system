@@ -10,8 +10,3 @@ A Human Resource Management System backend API built using Flask.
 
 ## Setup
 # CRUD_method
-# Crud001
-# Crud_visa_checker
-# CRUD_system
-# CRUD_system
-# CRUD_system
