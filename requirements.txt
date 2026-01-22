@@ -4,5 +4,7 @@ Flask-Migrate
 marshmallow
 marshmallow-sqlalchemy
 python-dotenv
+pymysql
+gunicorn
 
 pip freeze > requirements.txt
