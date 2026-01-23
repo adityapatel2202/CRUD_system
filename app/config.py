@@ -8,6 +8,8 @@
 #     SQLALCHEMY_TRACK_MODIFICATIONS = False
 import os
 
+basedir = os.path.abspath(os.path.dirname(__file__))
+
 class Config:
     SQLALCHEMY_DATABASE_URI = (
         f"mysql+pymysql://{os.getenv('root')}:{os.getenv('AzVeNRlfwNyZcUMovoFavZCMUOIWjMBL')}"
