@@ -12,6 +12,6 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config:
     SQLALCHEMY_DATABASE_URI = (
-       "mysql://root:AzVeNRlfwNyZcUMovoFavZCMUOIWjMBL@mysql.railway.internal:3306/railway"
+       f"mysql+pymysql://root:AzVeNRlfwNyZcUMovoFavZCMUOIWjMBL@mysql.railway.internal:3306/railway"
     )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
