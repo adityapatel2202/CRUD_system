@@ -6,4 +6,3 @@ marshmallow-sqlalchemy
 python-dotenv
 pymysql
 gunicorn
-vercel-python
